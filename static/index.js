@@ -410,10 +410,10 @@ function showGameScoreLayer() {
     let c = document.getElementById(_gameBBList[_gameBBListIndex - 1].id).className.match(_ttreg)[1];
     l.className = l.className.replace(/bgc\d/, 'bgc' + c);
     document.getElementById('GameScoreLayer-text').innerHTML = hide ? '' : "<span style='color:red;'>" + shareText(_gameScore) + "</span>";
-    let score_text = '您坚持了 ';
+    let score_text = '宁坚持了♂ ';
     score_text += "<span style='color:red;'>" + (deviation_time / 1000).toFixed(2) + "</span>" + ' 秒哦！<br>您的得分为 ';
     score_text += "<span style='color:red;'>" + _gameScore + "</span>";
-    score_text += '<br>您平均每秒点击了 ';
+    score_text += '<br>宁平均每秒点击了 ';
     score_text += "<span style='color:red;'>" + (_gameScore * 1000 / deviation_time).toFixed(2);
     score_text += "</span>" + ' 次哦！';
     score_text += "<br>相当于 <span style='color:red;'>" + (_gameScore * 15000 / deviation_time).toFixed(2) + "</span> BPM 下的十六分音符哦！"
@@ -423,8 +423,7 @@ function showGameScoreLayer() {
         bast = _gameScore;
         cookie('bast-score', bast, 100);
     }
-
-    document.getElementById('GameScoreLayer-bast').innerHTML = '历史最佳得分 ' + "<span style='color:red;'>" + bast + "</span>";
+    document.getElementById('GameScoreLayer-bast').innerHTML = '历史最渣得分 ' + "<span style='color:red;'>" + bast + "</span>";
     let now = '您的自定义键型为：' + "<span style='color:red;'>" + key.join('')
         + "</span>";
     document.getElementById('now').innerHTML = now;
@@ -450,11 +449,11 @@ function backBtn() {
 function shareText(score) {
 
     deviation_time = (date2.getTime() - _date1.getTime())
-    if (score <= 2.5 * __Time) return '加油！我相信您可以的！';
-    if (score <= 5 * __Time) return '^_^ 加把劲，底力大王就是您！';
-    if (score <= 7.5 * __Time) return '您！';
-    if (score <= 10 * __Time) return '太 您 了！';
-    return '您是外星人嘛？';
+    if (score <= 2.5 * __Time) return '干巴爹！我相信宁可以的！';
+    if (score <= 5 * __Time) return '加把劲，恶臭仙人就是宁！';
+    if (score <= 7.5 * __Time) return '下北泽恶臭仙人出现了！';
+    if (score <= 10 * __Time) return '酸死了凸(艹皿艹)！';
+    return '是dog还是g吧';
 }
 
 function toStr(obj) {
