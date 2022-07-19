@@ -1,145 +1,157 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+< html >
 
-<head>
-    <title>吃掉小猫猫</title>
-    <meta itemprop="name" content="吃掉小猫猫！" />
-    <meta itemprop="description" content="新概念音游" />
-    <meta charset="utf-8" />
-    <meta name="viewport"
-        content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi" />
-    <link rel="icon" href="https://eafoo.github.io/eatcat/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="https://eafoo.github.io/eatcat/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="./static/index.css" rel="stylesheet" type="text/css">
-    <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-    <script src="https://passport.cnblogs.com/scripts/jsencrypt.min.js"></script>
-    <script src="./static/index.js"></script>
-</head>
+<头>
+    < title >撅爆先辈</ title >
+    < meta  itemprop =" name " content ="撅爆先辈！ " />
+    < meta  itemprop =" description " content ="新概念雪游"/>
+    <元 字符集=" utf-8 " />
+    <元 名称=“视口”
+        内容=“初始比例=1，用户可缩放=否，最小比例=1.0，最大比例=1.0，宽度=设备宽度，目标密度dpi=设备dpi ” />
+    < link  rel =" icon " href =" https://eafoo.github.io/eatcat/favicon.ico " type =" image/x-icon " />
+    < link  rel ="快捷方式图标" href =" https://eafoo.github.io/eatcat/favicon.ico " type =" image/x-icon " />
+    <链接 rel =“样式表” href =“ https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css ”
+        完整性=" sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T " crossorigin ="匿名" >
+    < link  href =" ./static/ index.css " rel =" stylesheet " type =" text/css " >
+    < script  src =" https://pv.sohu.com/cityjson?ie=utf-8 " > </ script >
+    < script  src =" https://code.createjs.com/1.0.0/createjs.min.js " > </ script >
+    < script  src =" https://passport.cnblogs.com/scripts/jsencrypt.min.js " > </ script >
+    < script  src =" ./static/ index.js " > </ script >
+</头>
 
-<body onLoad="init()" oncontextmenu=self.event.returnValue=false>
-    <div id="GameScoreLayer" class="BBOX SHADE bgc1" style="display:none;">
-        <div style="padding:5%;margin-top: 200px;background-color: rgba(125, 181, 216, 0.8);">
-            <div id="GameScoreLayer-text" style="font-size:0.6em;"></div>
-            <div id="GameScoreLayer-score" style="font-size:0.6em; margin:10px 0;">得分</div>
-            <div id="GameScoreLayer-bast" style="font-size:0.6em;">最佳</div>
-            <div id="now" style="font-size:0.6em;">键型</div>
-            <div id="nosw" style="font-size:0.6em;">电脑端玩家按下R键可一键重开哦~</div>
-            <button type="button" class="btn btn-secondary btn-lg" onclick="replayBtn()">重来</button>
-            <button type="button" class="btn btn-secondary btn-lg"
-                onclick="hideGameScoreLayer();showWelcomeLayer();gameRestart()">返回主页</button>
-            <button type="button" class="btn btn-secondary btn-lg"
-                onclick="window.location.href='https://github.com/Eafoo/eatcat'">源代码(改版后)</button>
-            <button type="button" class="btn btn-secondary btn-lg"
-                onclick="window.location.href='https://github.com/arcxingye/EatKano'">源代码(原版)</button>
-            <button type="button" class="btn btn-secondary btn-lg"
-                onclick="window.location.href='https://space.bilibili.com/470549205'">作者的B站主页</button>
-        </div>
-    </div>
-    </div>
-    <div id="welcome" class="SHADE BOX-M">
-        <div class="welcome-bg FILL"></div>
-        <div class="FILL BOX-M" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:5;">
-            <div style="margin:0 8% 0 9%;">
-                <div style="font-size:1.2em; color:#FEF002;" id="tt">吃掉小猫猫（支持高度自定义~）</div><br />
-                <div style="font-size: 1.0em; color:rgb(45, 255, 4); line-height:1.5em;" id="tttt">
-                    更新公告：现在可以设置垂直判定啦！<br />
-                </div>
-                <div style="font-size: 1.0em; color:#fff; line-height:1.5em;" id="ttt">
-                    从最底下小猫猫开始<br />
-                    看看您能吃多少猫猫~<br />
-                    注：设置里有很多好东西哟！<br />
-                    电脑玩家在默认设置下 <br />
-                    键盘上的DFJK键<br />
-                    可分别控制四个轨道哦！<br />
-                </div>
-                <br />
-                <div id="btn_group" style="display: block;">
-                    <button type="button" id="ready-btn" class="btn btn-primary loading btn-lg">点击开始</button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="show_setting()">游戏设置</button>
-                    <br /><br />
-                    <button type="button" class="btn btn-secondary btn-lg"
-                        onclick="foreach()">若出现了bug点击此按钮后刷新界面</button>
-                    <br /><br />
-                </div>
+< body  onLoad =" init() " oncontextmenu = self.event.returnValue =false >
+    < div  id =" GameScoreLayer " class =" BBOX SHADE bgc1 " style =" display:none; " >
+        < div  style =" padding:5%;margin-top: 200px;background-color: rgba(125, 181, 216, 0.8); " >
+            < div  id =" GameScoreLayer-text " style =" font-size:0.6em; " > </ div >
+            < div  id =" GameScoreLayer-score " style =" font-size:0.6em;margin:10px 0; " >得尿</ div >
+            < div  id =" GameScoreLayer-bast " style =" font-size:0.6em; " >最渣</ div >
+            < div  id =" now " style =" font-size:0.6em; " >键型啊很行啊</ div >
+            < div  id =" nosw " style =" font-size:0.6em; " >电脑苑端总按R键可重开啊啊啊啊</ div >
+            < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" replayBtn() " >重来啊啊啊！</ button >
+            <按钮 类型="按钮"类=" btn btn-secondary btn-lg "
+                onclick =" hideGameScoreLayer();showWelcomeLayer();gameRestart() " >饭回组叶</ button >
+            <按钮 类型="按钮"类=" btn btn-secondary btn-lg "
+                 onclick =" window.location.href='https://kaobinggao.github.io/EatKano/' " > ○代码(改中改后) </ button >
+            <按钮 类型="按钮"类=" btn btn-secondary btn-lg "   
+                onclick =" window.location.href='https://github.com/Eafoo/eatcat' " > ○代码（改版后）</ button >
+            <按钮 类型="按钮"类=" btn btn-secondary btn-lg "
+                onclick =" window.location.href='https://github.com/arcxingye/EatKano' " > ○代码(原版) </ button >
+            <按钮 类型="按钮"类=" btn btn-secondary btn-lg "
+                onclick =" window.location.href='https://space.bilibili.com/470549205' " >作者的B站主页</ button >
+                onclick="window.location.href='https://space.bilibili.com/431164473'" >盖中盖作者的B站主页</ button >
+        </ div >
+    </ div >
+    </ div >
+    < div  id ="欢迎"类=" SHADE BOX-M " >
+        < div  class =" welcome-bg FILL " > </ div >
+        < div  class =" FILL BOX-M " style =" position:absolute;top:0;left:0;right:0;bottom:0;z-index:5; " >
+            < div  style ="边距:0 8% 0 9%; " >
+                < div  style =" font-size:1.2em;color:#FEF002; " id = " tt " >撅爆先辈二（支持高度自龇腚义啊）< / div > <br />
+                < div  style =" font-size:1.0em;color:rgb(45,255,4);line-height:1.5em; " id =" tttt " >
+                    更新公告：现在可以设置鉴别啦（喜）< br />
+                </ div >
+                < div  style =" font-size:1.0em;color:#fff;line-height:1.5em; " id =" ttt " >
+                    从最底下先辈开始、撅< br />
+                    看看您能撅多少先辈~ < br />
+注：                    设置里有很多好米田共哟！<br />
+                    电脑玩家在默认设置下< br />
+                    键盘上的DFJK剑啊<br />
+                    可分别控制四四个轨道啊啊啊！< br />
+                </ div >
+                <br /> _
+                < div  id =" btn_group " style =" display:block; " >
+                    < button  type =" button " id =" ready-btn " class =" btn btn-primary loading btn-lg " >点击开撅</ button >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" show_setting() " >游戏射制</ button >
+                    <br /> <br /> _ _
+                    <按钮 类型="按钮"类=" btn btn-secondary btn-lg "
+                        onclick =" foreach() " >若出现bug点击此按钮发现后面（悲）</ button >
+                    <br /> <br /> _ _
+                </ div >
 
-                <div id="btn_group2" style="display: block;">
-                    <h2 style="font-size:1.0em; color:#fff; line-height:1.5em;">一键设置特殊键型（若按键全部消失请刷新界面）</h2>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="autoset('!')">纯随机</button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="autoset('@')">无纵连的随机</button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="autoset('@#')">短纵</button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="autoset('2')">全纵连</button>
-                    <br><br>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="autoset('32')">交互</button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="stair()">楼梯</button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="autoset('@##')">三纵</button>
-                </div>
-                <div id="setting1" style="display: none;">
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        请在此处输入您需要的键数（这边建议是2~8哦）
-                    </h3>
-                    <div class="input-group mb-3">
-                        <input align="center" type="text" id="k" class="inputtxt" maxlength=10>
-                    </div>
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        请在此处输入与您需要的键数数量相等的英文字母 <br />
-                        以绑定键盘上对应的按键哦（不区分大小写,手机端玩家请忽略按键设置）！<br />
-                        4K下电脑默认为DFJK哦！其他键数请自行设置！<br />
-                    </h3>
-                    <div class="input-group mb-3">
-                        <input type="text" id="keyboard" class="inputtxt" maxlength=99999>
-                    </div>
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        请在此处输入您想要设置的时间限制哦~ （单位：秒） <br />
-                    </h3>
-                    <div class="input-group mb-3">
-                        <input type="text" id="timeinput" class="inputtxt" maxlength=4>
-                    </div>
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        请在此处输入您想要设置的键型哦~ <a href="https://docs.qq.com/doc/DYVNMQ0pEWm12VGpv/" target="_blank">
-                            <br>（注意：键型设置有改动，详细说明请点击这里）</a> <br />
-                    </h3>
-                    <div class="input-group mb-3">
-                        <input type="text" id="note" class="inputtxt" maxlength=99999>
-                    </div>
-                    <button type="button" class="btn btn-secondary btn-lg"
-                        onclick="show_btn(1);save_cookie();">完成</button>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="nxtpage(1);">下一页</button>
-                </div>
-                <div id="setting2" style="display: none;">
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        关闭音效
-                    </h3>
-                    <input type="checkbox" class="rradio" id="close">
-                    <br>
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        隐藏结算后显示的评语
-                    </h3>
-                    <input type="checkbox" id="hide" class="rradio">
-                    <br>
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        开启垂直判定
-                    </h3>
-                    <input type="checkbox" id="fsj" class="rradio">
-                    <br>
-                    <h3 style="font-size:1.0em; color:#fff; line-height:1.3em;">
-                        自定义按键显示的图片（可以是动图哦~）
-                    </h3>
-                    <div class="u-file-c u-file-btn">
-                        <input id="upload-input" type="file" accept="image/gif, image/jpg, image/png, image/webp"
-                            onchange="showImg(this)" />
-                    </div>
-                    <br>
-                    <br>
-                    <button type="button" class="btn btn-secondary btn-lg" onclick="lstpage(2);">上一页</button>
-                    <button type="button" class="btn btn-secondary btn-lg"
-                        onclick="show_btn(2);save_cookie();">完成</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+                < div  id =" btn_group2 " style =" display: block; " >
+                    < h2  style =" font-size:1.0em; color:1.0em; line-height:1.5em; " >一键型捏（若完全消失请刷新界面）</ h2 >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" autoset ('!') " >纯纯随时捏</ button >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" autoset('@') " >无纵连的随时啊（悲）</ button >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" autoset('@#') " >短纵（喜）</ button >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" autoset('2') " >全纵连（喜中喜）</ button >
+                    <br> <br> _ _ _ _
+                    < button  type " class = " btn btn- btn-lg " btn-lg =" autoset32 ') " t >秒点击'啊啊</ button >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" stair() " >楼梯</ button >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" autoset('@##') " >三纵</ button >
+                </ div >
+                < div  id =" setting1 " style =" display: none; " >
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+                        请在这里输入你的剑数（很行是2~8啊）
+                    </ h3 >
+                    < div 类="输入组 mb-3 " >
+                        <输入 对齐=“中心”类型=“文本” id =“ k ”类=“输入txt ”最大长度= 10 >
+                    </ div >
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+请在此处输入                        您的姓名与您的姓名需要的数字键数
+                        以绑定键盘上的一串哦（不请玩家大小写，手机端爬）！< br />
+                        4K下电脑为DFJK哦！其他键数请自行设置！< br />
+                    </ h3 >
+                    < div 类="输入组 mb-3 " >
+                        <输入 类型=“文本” ID =“键盘”类=“输入txt ”最大长度= 99999 >
+                    </ div >
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+                        请在此处输入您想要设置的限制（悲）（单位：我的秒秒啊）< br />
+                    </ h3 >
+                    < div 类="输入组 mb-3 " >
+                        <输入 类型=“文本” id =“时间输入”类=“输入txt ”最大长度= 4 >
+                    </ div >
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+请在这里输入你想要设置的                        剑宗啊！<a href="https://docs.qq.com/doc/DYVNMQ0pEWm12VGpv/"target="_blank"> 
+                            < br >（注意：键型设置点击有印刷，详细说明请点击这里）</ a >  < br />
+                    </ h3 >
+                    < div 类="输入组 mb-3 " >
+                        <输入 类型=“文本” id =“注释”类=“输入txt ”最大长度= 99999 >
+                    </ div >
+                    <按钮 类型="按钮"类=" btn btn-secondary btn-lg "
+                        onclick =" show_btn(1);save_cookie(); " >完成啦啊哈哈哈哈</ button >
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" nxtpage(1); " >下一页啊</ button >
+                </ div >
+                < div  id =" setting2 " style =" display: none; " >
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+                        关阴笑
+                    </ h3 >
+                    <输入 类型="复选框"类=" rradio " id ="关闭" >
+                    <br> _ _
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+                        隐藏结算后显示的评论语
+                    </ h3 >
+                    <输入 类型="复选框" id ="隐藏"类=" rradio " >
+                    <br> _ _
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+                        开启纵向甄别
+                    </ h3 >
+                    <输入 类型="复选框" id =" fsj "类=" rradio " >
+                    <br> _ _
+                    < h3  style ="字体大小：1.0em；颜色：#fff；行高：1.3em； " >
+                        自定义动态显示的图片（可以是图哼哼啊）
+                    </ h3 >
+                    < div  class =" u-file-c u-file-btn " >
+                        <输入 ID =“上传输入”类型=“文件”接受=“图像/gif、图像/jpg、图像/png、图像/webp ”
+                            onchange =" showImg(this) " />
+                    </ div >
+                    <br> _ _
+                    <br> _ _
+                    < button  type =" button " class =" btn btn-secondary btn-lg " onclick =" lstpage(2); " >上一页</ button >
+                    <按钮 类型="按钮"类=" btn btn-secondary btn-lg "
+                        onclick =" show_btn(2);save_cookie(); " >完成</按钮>
+                </ div >
+            <br> <br> _ _  _ _   
+            <a class="btn btn-success btn-lg" href="https://kaobingan.github.io/KillKennedy/" >点击开始撅杀</a> _  _ _ _
+            <br> <br> _ _  _ _
+            <a class="btn btn-success btn-lg" href="https://kaobingan.github.io/EatKano/" >整 补同学版</a> _ _ _ _
+            <br> <br> _ _  _ _
+            <a class="btn btn-primary btn-lg"  href="https://www.bilibili.com/video/BV173411F7iP/" >改版B站(点个赞吧)   </a>
+            <br> <br> _ _  _ _
+            <a class="btn btn-primary btn-lg" href="https://www.bilibili.com/video/BV1hm4y1Z7y8/" >？？？</a> _  _ _   _ _ _ _
+            </ div >
+        </ div >
+    </ div >
+</正文>
 
+</ html >
 </html>
